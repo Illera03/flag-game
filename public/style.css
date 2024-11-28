@@ -1,9 +1,185 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centra los elementos horizontalmente */
+    justify-content: flex-start;
+    /* Alinea los elementos en la parte superior */
+    height: 100vh;
+    /* Asegura que el cuerpo ocupe toda la altura de la ventana */
+}
+
+/* Header styling */
+.head {
+    display: flex;
+    justify-content: flex-start;
+    /* Alinea los elementos a la izquierda (por defecto) */
+    align-items: center;
+    /* Centra verticalmente el contenido de .head */
+    position: relative;
+    /* Necesario para el posicionamiento absoluto del título */
+    width: 100%;
+    /* Limita el ancho máximo */
+    height: 150px;
+    padding: 20px;
+    box-sizing: border-box;
+
+}
+
+/* Title Section */
 .title {
     font-family: "Rampart One", sans-serif;
     font-weight: 400;
     font-style: normal;
+    text-align: center;
+    padding: 5px;
+    position: absolute;
+    /* Esto coloca el título de forma absoluta dentro de .head */
+    left: 50%;
+    /* Centra el título horizontalmente */
+    transform: translateX(-50%);
+    /* Ajusta el título para que esté perfectamente centrado */
+    z-index: 1;
+    /* Asegura que el título esté por encima de los otros elementos */
 }
 
-.h1 {
+.title-text {
     color: #ffbb00;
+    font-size: 3.4em;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* User Info Section */
+.user-info {
+    position: absolute;
+    text-align: right;
+    flex-basis: 300px;
+    right: 1%;
+    /* Define un tamaño fijo para el área de información del usuario */
+    z-index: 1;
+    /* Coloca la información del usuario detrás del título */
+}
+
+.user-info table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.user-info th,
+.user-info td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+
+
+
+/* Game Data Section */
+.game-data {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Username Input Section */
+.username-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.username-input input {
+    padding: 10px;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    width: 250px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 3px;
+    height: 10px;
+}
+
+.username-input button {
+    padding: 10px 20px;
+    font-size: 1 rem;
+}
+
+/* Flag Curiosity Score Section */
+.flag-curio-score {
+    display: flex;
+    justify-content: space-between;
+    /* Ensure curiosity and score are spread out */
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 20px;
+}
+
+/* Curiosity Section */
+.curio {
+    width: 30%;
+    /* Narrow the width for curiosity */
+    text-align: center;
+    /* Center curiosity content */
+}
+
+/* Flag Section - Make it centered */
+.flag {
+    width: 30%;
+    /* Control width */
+    height: 150px;
+    background-color: #f0f0f0;
+    text-align: center;
+    line-height: 150px;
+    margin: 0 auto;
+    /* Center flag */
+}
+
+/* Score Section */
+.scores-data {
+    width: 30%;
+    /* Narrow the width for score */
+    text-align: center;
+    /* Center score content */
+}
+
+/* Buttons Section */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Botones en formato 2x2 */
+    gap: 10px;
+    width: 200px;
+    margin-top: 20px;
+}
+
+.buttons button {
+    padding: 15px;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buttons button:hover {
+    background-color: #45a049;
 }

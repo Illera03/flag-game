@@ -15,35 +15,83 @@
 </head>
 
 <body>
-    <div title class="title">
-        <h1>Flame</h1>
-        <h2>¿How much do you know about flags?</h2>
-    </div>
-
+    <header class="head">
+        <div class="title">
+            <h1 class="title-text">Flame</h1>
+            <h2>¿How much do you know about flags?</h2>
+        </div>
+        <div class="user-info">
+            <table>
+                <tr>
+                    <th>Username</th>
+                    <td>bob</td>
+                </tr>
+                <tr>
+                    <th>Best score</th>
+                    <td>32 flames</td>
+                </tr>
+                <tr>
+                    <th>Games played</th>
+                    <td>5</td>
+                <tr>
+                    <th>Current score</th>
+                    <td>0 flames</td>
+                </tr>
+            </table>
+        </div>
+    </header>
 
     <div game-data class="game-data">
-        <div flag class="flag">
-
+        <div username-input class="username-input">
+            <input type="text" id="username" placeholder="Enter your name">
+            <button id="start">Start</button>
         </div>
-        <div buttons class="buttons">
-            <button id="button1">Option 1</button>
-            <button id="button2">Option 2</button>
-            <button id="button3">Option 3</button>
-            <button id="button4">Option 4</button>
+        <div flag-curio-score class="flag-curio-score">
+            <div curio class="curio">
+                <p>Curiosity:</p>
+                <p id="curio-text">Country Curiosity</p>
+            </div>
+            <div flag class="flag">
+                flag
+            </div>
+
+            <div scores-data class="scores-data">
+                <table>
+                    <tr>
+                        <th>Username</th>
+                        <th>Score</th>
+                    </tr>
+                    <tr>
+                        <td>Username 1</td>
+                        <td>Score 1</td>
+                    </tr>
+                    <tr>
+                        <td>Username 1</td>
+                        <td>Score 1</td>
+                    </tr>
+                    <tr>
+                        <td>Username 1</td>
+                        <td>Score 1</td>
+                    </tr>
+                    <tr>
+                        <td>Username 1</td>
+                        <td>Score 1</td>
+                    </tr>
+                    <tr>
+                        <td>Username 1</td>
+                        <td>Score 1</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
-    <div scores-data class="scores-data">
-        <table>
-            <tr>
-                <th>Username</th>
-                <th>Score</th>
-            </tr>
-            <tr>
-                <td>Username 1</td>
-                <td>Score 1</td>
-            </tr>
+    <div buttons class="buttons">
+        <button id="button1">Option 1</button>
+        <button id="button2">Option 2</button>
+        <button id="button3">Option 3</button>
+        <button id="button4">Option 4</button>
     </div>
-
+    </div>
 
 
 </body>
