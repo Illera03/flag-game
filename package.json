@@ -1,0 +1,15 @@
+{
+    "name": "flag-game",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server/app.js",
+    "type": "commonjs",
+    "scripts": {
+        "start": "node server/app.js"
+    },
+    "dependencies": {
+        "express": "^4.18.2",
+        "sqlite3": "^5.1.6",
+        "node-fetch": "^2.6.7"
+    }
+}
