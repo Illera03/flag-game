@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Faster+One&family=Montserrat&family=Rampart+One&display=swap"
         rel="stylesheet">
     <link rel="icon" type="image/png" href="images/icon.png">
-    <script src="script.js" type="text/javascript" defer></script>
+    <script src="app.js" type="text/javascript" defer></script>
     <link href="style.css" rel="stylesheet" />
     <title>Flame</title>
 </head>
@@ -48,15 +48,15 @@
         </div>
         <div flag-curio-score class="flag-curio-score">
             <div curio class="curio">
-                <p>Curiosity:</p>
-                <p id="curio-text">Country Curiosity</p>
+                <h2>Curiosity:</h2>
+                <p id="curio-text">?</p>
             </div>
             <div flag class="flag">
-                flag
+                <img id="flag-img">
             </div>
 
             <div scores-data class="scores-data">
-                <table>
+                <table scores-table class="scores-table">
                     <tr>
                         <th>Username</th>
                         <th>Score</th>
@@ -92,6 +92,9 @@
         <button id="button4">Option 4</button>
     </div>
     </div>
+    <footer>
+        <p>© 2024 Flame. All rights reserved.</p>
+    </footer>
 
 
 </body>
