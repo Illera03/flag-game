@@ -187,12 +187,14 @@ h2 {
     font-weight: 400;
     font-style: normal;
     border-radius: 5px;
+    visibility: hidden;
+    /*? */
 }
 
 /* Flag Section - Make it centered */
 .flag {
-    width: 320px;
-    height: 160px;
+    width: 640px;
+    height: 240px;
     text-align: center;
     background-color: #ffffff;
     line-height: 150px;
@@ -243,6 +245,8 @@ h2 {
     /* Tamaño de fuente moderno */
     color: #333;
     border-radius: 8px;
+    visibility: hidden;
+    /*? */
 
 }
 
@@ -291,6 +295,8 @@ h2 {
 
 .buttons button {
     padding: 15px;
+    height: 100px;
+    width: 350px;
     font-size: 1rem;
     background-color: #969696;
     color: white;
@@ -298,6 +304,7 @@ h2 {
     cursor: pointer;
     transition: background-color 0.3s;
     font-weight: bold;
+    border-radius: 5px;
 
 }
 
