@@ -6,7 +6,6 @@ const buttons = [button1, button2, button3, button4];
 let country;
 let random;
 let isFetching = false;
-let APIurl = 'https://restcountries.com/v3.1/name/';
 let APICache = [];
 let wait = false;
 
