@@ -1,10 +1,10 @@
 const express = require('express'); // Importa el módulo express
-const fetch = require('node-fetch'); // Importa el módulo node-fetch para hacer solicitudes HTTP
 const router = express.Router(); // Crea una instancia del enrutador de express
 
 // Define una ruta GET en la raíz del enrutador
 router.get('/', async (req, res) => {
     try {
+        const fetch = (await import('node-fetch')).default;
         // Realiza una solicitud HTTP GET a la API de restcountries para obtener información de todos los países
         const response = await fetch('https://restcountries.com/v3.1/all');
         const data = await response.json(); // Convierte la respuesta a formato JSON

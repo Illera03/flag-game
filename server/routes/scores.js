@@ -19,21 +19,34 @@ router.post('/', (req, res) => { // Define una ruta POST para guardar una nueva 
     );
 });
 
-// Obtener puntuaciones de un usuario
-router.get('/:userId', (req, res) => { // Define una ruta GET para obtener las puntuaciones de un usuario específico
-    const { userId } = req.params; // Extrae userId de los parámetros de la ruta
+/// Obtener el mejor score y el número de filas de un usuario
+router.get('/:username', (req, res) => { // Recibimos 'username' como parámetro
+    const { username } = req.params;
 
-    db.all(
-        'SELECT * FROM scores WHERE user_id = ? ORDER BY created_at DESC', // Consulta SQL para obtener todas las puntuaciones de un usuario, ordenadas por fecha de creación descendente
-        [userId], // Parámetro de la consulta SQL
-        (err, rows) => { // Callback que se ejecuta después de intentar obtener las puntuaciones
-            if (err) { // Si hay un error
-                res.status(500).json({ error: err.message }); // Responde con un error 500 y el mensaje de error
-            } else { // Si no hay error
-                res.json(rows); // Responde con las filas obtenidas de la consulta
-            }
+    // Obtener el ID del usuario
+    db.get('SELECT id FROM users WHERE username = ?', [username], (err, row) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
         }
-    );
+
+        if (!row) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        const userId = row.id;
+
+        // Obtener el mejor score y el número de juegos del usuario
+        db.get(
+            'SELECT MAX(score) as best_score, COUNT(*) as games_played FROM scores WHERE user_id = ?',
+            [userId],
+            (err, row) => {
+                if (err) {
+                    return res.status(500).json({ error: err.message });
+                }
+                res.json(row);
+            }
+        );
+    });
 });
 
-module.exports = router; // Exporta el router para que pueda ser utilizado en otras partes de la aplicación
+module.exports = router;

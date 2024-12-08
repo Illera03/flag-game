@@ -3,11 +3,17 @@ const button2 = document.getElementById('button2');
 const button3 = document.getElementById('button3');
 const button4 = document.getElementById('button4');
 const buttons = [button1, button2, button3, button4];
+const username = document.getElementById('username');
+let tableUsername = document.getElementById('table-username');
+let tableBestScore = document.getElementById('table-best-score');
+let currentScore = document.getElementById('table-current-score');
+let gamesPlayed = document.getElementById('table-games-played');
 let country;
 let random;
 let isFetching = false;
 let APICache = [];
 let wait = false;
+let logged = false;
 
 
 // Obtener bandera
@@ -57,12 +63,13 @@ async function fetchOptions() {
 }
 
 async function checkAnswer(button) {
+    //TODO if logged == false, mostrar mensaje de que debe iniciar sesión
     const time = 750; // Tiempo de espera para cambiar el color y cargar nueva bandera
     if (wait) return;  // Si ya está esperando, no permitir otra respuesta
     console.log(country + " " + "Solución"); // Indicar que se ha dado una respuesta
     wait = true; // Establecer espera en true para bloquear nuevas respuestas
 
-    if (button.innerText == country) {
+    if (button.innerText == country) { //ACIERTA
         // Cambiar botón a verde si la respuesta es correcta
         button.style.backgroundColor = "green";
 
@@ -71,7 +78,7 @@ async function checkAnswer(button) {
             button.style.backgroundColor = "grey";
             fetchFlagAndOptions(); // Cargar nueva bandera y opciones
         }, time);
-    } else {
+    } else { //FALLA
         // Cambiar botón a rojo si la respuesta es incorrecta
         button.style.backgroundColor = "red";
         buttons[random].style.backgroundColor = "green"; // Marcar el botón correcto en verde
@@ -82,6 +89,7 @@ async function checkAnswer(button) {
             buttons[random].style.backgroundColor = "grey";
             fetchFlagAndOptions(); // Cargar nueva bandera y opciones
         }, time);
+        // TODO: Aquí habría que parar y guardar la puntuación e iniciar de nuevo
     }
 
     // Después de esperar el tiempo, permitir nuevas respuestas
@@ -110,6 +118,46 @@ async function submitScore(userId, score) {
     }
 }
 
+// Iniciar sesión
+async function logUser() {
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: username.value.trim() }),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || `HTTP Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data); // Confirma que se inició sesión
+        logged = true;
+        updateTable(data.id); // Pasa el ID del usuario a la función updateTable
+
+    } catch (error) {
+        console.error('Error iniciando sesión:', error.message);
+    }
+}
+
+// Actualizar tabla
+async function updateTable(userId) {
+    try {
+        const response = await fetch(`/api/scores/${userId}`); // Utilizamos el userId
+        if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
+
+        const data = await response.json();
+        tableUsername.innerText = username.value.trim();
+        tableBestScore.innerText = data.best_score;
+        currentScore.innerText = 0;
+        gamesPlayed.innerText = data.games_played;
+    } catch (error) {
+        console.error('Error actualizando la tabla:', error);
+    }
+}
+
 
 
 // Obtener bandera y opciones
@@ -124,4 +172,5 @@ async function fetchFlagAndOptions() {
 }
 document.addEventListener('DOMContentLoaded', () => {
     fetchFlagAndOptions();
+
 });

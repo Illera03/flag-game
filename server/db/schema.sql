@@ -1,12 +1,12 @@
 -- Crear tabla de usuarios
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT NOT NULL UNIQUE,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Crear tabla de puntuaciones
-CREATE TABLE scores (
+CREATE TABLE IF NOT EXISTS scores (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
     score INTEGER NOT NULL,

@@ -24,18 +24,18 @@
             <table>
                 <tr>
                     <th>Username</th>
-                    <td>bob</td>
+                    <td id="table-username"></td>
                 </tr>
                 <tr>
                     <th>Best score</th>
-                    <td>32 flames</td>
+                    <td id="table-best-score">0</td>
                 </tr>
                 <tr>
                     <th>Games played</th>
-                    <td>5</td>
+                    <td id="table-games-played">0</td>
                 <tr>
                     <th>Current score</th>
-                    <td>0 flames</td>
+                    <td id="table-current-socre">0</td>
                 </tr>
             </table>
         </div>
@@ -44,7 +44,7 @@
     <div game-data class="game-data">
         <div username-input class="username-input">
             <input type="text" id="username" placeholder="Enter your name">
-            <button id="start">Start</button>
+            <button id="start" onclick="logUser()">Start</button>
         </div>
         <div flag-curio-score class="flag-curio-score">
             <div curio class="curio">
