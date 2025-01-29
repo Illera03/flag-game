@@ -120,9 +120,6 @@ h2 {
 }
 
 
-
-
-
 /* Game Data Section */
 .game-data {
 
@@ -135,7 +132,7 @@ h2 {
     width: 100%;
 }
 
-/* Username Input Section */
+/* Username Input Section
 .username-input {
     display: flex;
     flex-direction: row;
@@ -164,6 +161,10 @@ h2 {
     border-radius: 5px;
     font-weight: bold;
 }
+
+.username-input button:hover {
+    background-color: #ffbb60;
+} */
 
 /* Flag Curiosity Score Section */
 .flag-curio-score {
@@ -295,13 +296,16 @@ h2 {
     height: 100px;
     width: 350px;
     font-size: 1rem;
-    background-color: #969696;
-    color: white;
+    background-color: #ffffff;
+    color: #ffbb00;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
     font-weight: bold;
     border-radius: 5px;
+    border-color: #ffbb00;
+    border-width: 5px;
+    border-style: solid;
 
 }
 
@@ -314,4 +318,14 @@ h2 {
     font-size: 0.8rem;
     color: #666;
     font-weight: lighter;
+}
+
+.score {
+    display: flex;
+    align-items: center;
+    /* Alinea los elementos verticalmente */
+    gap: 10px;
+    /* Espacio entre los elementos */
+    font-family: "Rampart One", sans-serif;
+
 }

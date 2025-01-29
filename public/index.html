@@ -20,32 +20,10 @@
             <h1 class="title-text">Flame</h1>
             <h2>¿How much do you know about flags?</h2>
         </div>
-        <div class="user-info">
-            <table>
-                <tr>
-                    <th>Username</th>
-                    <td id="table-username"></td>
-                </tr>
-                <tr>
-                    <th>Best score</th>
-                    <td id="table-best-score">0</td>
-                </tr>
-                <tr>
-                    <th>Games played</th>
-                    <td id="table-games-played">0</td>
-                <tr>
-                    <th>Current score</th>
-                    <td id="table-current-socre">0</td>
-                </tr>
-            </table>
-        </div>
     </header>
 
     <div game-data class="game-data">
-        <div username-input class="username-input">
-            <input type="text" id="username" placeholder="Enter your name">
-            <button id="start" onclick="logUser()">Start</button>
-        </div>
+
         <div flag-curio-score class="flag-curio-score">
             <div curio class="curio">
                 <h2>Curiosity:</h2>
@@ -54,7 +32,6 @@
             <div flag class="flag">
                 <img id="flag-img">
             </div>
-
             <div scores-data class="scores-data">
                 <table scores-table class="scores-table">
                     <tr>
@@ -84,6 +61,10 @@
                 </table>
             </div>
         </div>
+    </div>
+    <div score class="score">
+        <h2>Score:</h2>
+        <h2 id="score-text">0</h2>
     </div>
     <div buttons class="buttons">
         <button id="button1" onclick="checkAnswer(this)"></button>

@@ -3,11 +3,7 @@ const button2 = document.getElementById('button2');
 const button3 = document.getElementById('button3');
 const button4 = document.getElementById('button4');
 const buttons = [button1, button2, button3, button4];
-const username = document.getElementById('username');
-let tableUsername = document.getElementById('table-username');
-let tableBestScore = document.getElementById('table-best-score');
-let currentScore = document.getElementById('table-current-score');
-let gamesPlayed = document.getElementById('table-games-played');
+const score = document.getElementById('score-text');
 let country;
 let random;
 let isFetching = false;
@@ -72,24 +68,25 @@ async function checkAnswer(button) {
     if (button.innerText == country) { //ACIERTA
         // Cambiar botón a verde si la respuesta es correcta
         button.style.backgroundColor = "green";
-
+        // Sumar 1 al marcador
+        score.innerText = parseInt(score.innerText) + 1;
         // Esperar 500ms, luego cambiar a gris y hacer el fetch
         setTimeout(function () {
-            button.style.backgroundColor = "grey";
+            button.style.backgroundColor = "white";
             fetchFlagAndOptions(); // Cargar nueva bandera y opciones
         }, time);
     } else { //FALLA
         // Cambiar botón a rojo si la respuesta es incorrecta
         button.style.backgroundColor = "red";
         buttons[random].style.backgroundColor = "green"; // Marcar el botón correcto en verde
+        score.innerText = 0; // Reiniciar el marcador
 
         // Esperar 500ms, luego cambiar a gris y hacer el fetch
         setTimeout(function () {
-            button.style.backgroundColor = "grey";
-            buttons[random].style.backgroundColor = "grey";
+            button.style.backgroundColor = "white";
+            buttons[random].style.backgroundColor = "white";
             fetchFlagAndOptions(); // Cargar nueva bandera y opciones
         }, time);
-        // TODO: Aquí habría que parar y guardar la puntuación e iniciar de nuevo
     }
 
     // Después de esperar el tiempo, permitir nuevas respuestas
@@ -118,45 +115,48 @@ async function submitScore(userId, score) {
     }
 }
 
-// Iniciar sesión
-async function logUser() {
-    try {
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: username.value.trim() }),
-        });
+// // Iniciar sesión o registrar usuario
+// async function logUser() {
+//     try {
+//         console.log('Username:', username.value.trim());
+//         console.log('Password:', password.value);
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || `HTTP Error: ${response.status}`);
-        }
+//         const response = await fetch('/api/login', {
+//             method: 'POST',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify({ username: username.value.trim(), password: password.value }),
+//         });
+//         if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
+//         console.log("Usuario registrado");
+//         const data = await response.json();
+//         console.log(data); // Confirma que se guardó
+//         logged = true;
+//         if (data.userId) {
+//             updateTable(data.userId);
+//         } else {
+//             console.error('Error: userId no recibido en la respuesta');
+//         }
 
-        const data = await response.json();
-        console.log(data); // Confirma que se inició sesión
-        logged = true;
-        updateTable(data.id); // Pasa el ID del usuario a la función updateTable
+//     } catch (error) {
+//         console.error('Error iniciando sesión:', error);
+//     }
+// }
 
-    } catch (error) {
-        console.error('Error iniciando sesión:', error.message);
-    }
-}
+// // Actualizar tabla
+// async function updateTable(userId) {
+//     try {
+//         const response = await fetch(`/api/scores/${userId}`); // Utilizamos el userId
+//         if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
 
-// Actualizar tabla
-async function updateTable(userId) {
-    try {
-        const response = await fetch(`/api/scores/${userId}`); // Utilizamos el userId
-        if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
-
-        const data = await response.json();
-        tableUsername.innerText = username.value.trim();
-        tableBestScore.innerText = data.best_score;
-        currentScore.innerText = 0;
-        gamesPlayed.innerText = data.games_played;
-    } catch (error) {
-        console.error('Error actualizando la tabla:', error);
-    }
-}
+//         const data = await response.json();
+//         tableUsername.innerText = username.value.trim();
+//         tableBestScore.innerText = data.best_score;
+//         currentScore.innerText = 0;
+//         gamesPlayed.innerText = data.games_played;
+//     } catch (error) {
+//         console.error('Error actualizando la tabla:', error);
+//     }
+//}
 
 
 
